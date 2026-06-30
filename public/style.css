@@ -244,3 +244,34 @@ body {
         max-width: 85%;
     }
 }
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.header-controls select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* background: white; */
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.header-controls select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+@media (max-width: 600px) {
+    .header-controls {
+        width: 100%;
+    }
+    
+    .header-controls select {
+        flex: 1;
+        min-width: 120px;
+    }
+}

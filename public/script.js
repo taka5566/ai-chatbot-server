@@ -4,16 +4,24 @@ let conversationHistory = [];
 let isProcessing = false;
 
 const personalityDescriptions = {
+    jackson: 'Jackson: Your portfolio AI assistant representing Jackson the Analyst Programmer',
     claude: 'Claude 3.5 Sonnet: Professional and thoughtful AI',
-    gpt4: 'GPT-4o: Versatile and powerful AI',
-    gemini: 'Gemini Pro: Fast and efficient AI',
-    llama: 'Llama 3.1 405B: Open and powerful AI'
+    friendly: 'Friendly Assistant: Warm and encouraging AI',
+    professional: 'Professional Assistant: Formal and precise AI',
+    creative: 'Creative Assistant: Imaginative and playful AI'
+};
+
+const languageNames = {
+    en: 'English',
+    zh: '中文',
+    ja: '日本語',
 };
 
 function updatePersonalityInfo() {
     const personality = document.getElementById('personality').value;
+    const language = document.getElementById('language').value;
     const infoDiv = document.getElementById('personality-info');
-    infoDiv.innerHTML = `<strong>${personalityDescriptions[personality].split(':')[0]}</strong>: ${personalityDescriptions[personality].split(':')[1]}`;
+    infoDiv.innerHTML = `<strong>${personalityDescriptions[personality].split(':')[0]}</strong>: ${personalityDescriptions[personality].split(':')[1]} | Language: ${languageNames[language]}`;
 }
 
 function addMessage(text, isUser, aiName = '') {
@@ -79,6 +87,7 @@ async function sendMessage() {
     if (!message) return;
     
     const personality = document.getElementById('personality').value;
+    const language = document.getElementById('language').value;
     
     addMessage(message, true);
     input.value = '';
@@ -95,8 +104,8 @@ async function sendMessage() {
             body: JSON.stringify({
                 message,
                 personality,
-                conversationHistory,
-                userName: 'User'
+                language,  // Send selected language
+                conversationHistory
             })
         });
         
@@ -113,7 +122,7 @@ async function sendMessage() {
             });
             
             conversationHistory.push({
-                role: 'bot',
+                role: 'assistant',
                 content: data.response
             });
             
@@ -152,8 +161,13 @@ document.getElementById('personality').addEventListener('change', function() {
     clearChat();
 });
 
+document.getElementById('language').addEventListener('change', function() {
+    updatePersonalityInfo();
+    clearChat();
+});
+
 // Add welcome message on load
 window.onload = () => {
     updatePersonalityInfo();
-    addMessage('👋 Hello! I\'m your AI assistant powered by Poe. Choose a model above and start chatting!', false, 'System');
+    addMessage('👋 Hello! I\'m your AI assistant. Choose a personality and language above and start chatting! Try "Jackson" to learn about my portfolio.', false, 'System');
 };
