@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - Powered by Poe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-header">
+            <h1>🤖 AI Chatbot</h1>
+            <select id="personality">
+                <option value="claude">Claude 3.5 Sonnet</option>
+                <option value="gpt4">GPT-4o</option>
+                <option value="gemini">Gemini Pro</option>
+                <option value="llama">Llama 3.1 405B</option>
+            </select>
+        </div>
+
+        <div class="personality-info" id="personality-info">
+            <strong>Claude 3.5 Sonnet</strong>: Professional and thoughtful AI
+        </div>
+
+        <div id="chat-messages" class="chat-messages"></div>
+
+        <div class="chat-input">
+            <input 
+                type="text" 
+                id="message-input" 
+                placeholder="Type your message..."
+                onkeypress="handleKeyPress(event)"
+            >
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

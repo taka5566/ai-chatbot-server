@@ -1,0 +1,21 @@
+{
+  "name": "ai-chatbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@vercel/node": "^5.8.22",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@types/node": "^26.0.1"
+  }
+}
